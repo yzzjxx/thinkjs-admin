@@ -12,11 +12,12 @@
 </head>
 
 <body>
-    <form>
-        <img id="avatar" class="avatar animated bounce faster" src="https://b-ssl.duitang.com/uploads/item/201809/26/20180926221345_xwebg.thumb.700_0.jpg" alt="">
+    <form action="/login/login" method="POST">
+        <img id="avatar" class="avatar animated bounce faster"
+            src="https://b-ssl.duitang.com/uploads/item/201809/26/20180926221345_xwebg.thumb.700_0.jpg" alt="">
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="email" class="form-control" name="username" id="username" placeholder="Username">
+            <input type="text" class="form-control" name="username" id="username" placeholder="Username">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
@@ -30,6 +31,30 @@
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
     <script src="/static/plugins/jquery/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('#username').on('blur', function () {
+                var emailFilter = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/,
+                    last_name;
+                var username = $('#username').val();
+                if (!username || !emailFilter.test(username) || last_name == username) return;
+                $.ajax({
+                    type: 'get',
+                    url: 'login/avatar',
+                    data: 'username=' + username,
+                    success: function (data) {
+                        if (!data.errmsg) {
+                            $('#avatar').fadeOut(function () {
+                                $(this).on('load', function () {
+                                    $(this).fadeIn();
+                                }).attr('src', data.data);
+                            })
+                        }
+                    }
+                })
+            })
+        })
+    </script>
 </body>
 
 </html>
