@@ -1,0 +1,25 @@
+/* css document */
+body {
+    background-color: #B9D3EE;
+}
+form {
+    width: 380px;
+    margin: 140px auto 0;
+    padding: 32px 16px 16px;
+    position: relative;
+    background-color: #fff;
+}
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: absolute;
+    top: -48px;
+    left: 50%;
+    margin-left: -40px;
+    box-shadow: 1px 1px 10px 2px #666;
+}
+.btn-default {
+    background-color: #9FB6CD;
+    color: #fff;
+}
